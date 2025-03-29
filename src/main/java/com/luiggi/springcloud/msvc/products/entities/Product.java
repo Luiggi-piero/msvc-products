@@ -8,6 +8,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import jakarta.persistence.Transient;
 
 @Entity
 @Table(name = "products")
@@ -22,6 +23,10 @@ public class Product {
 
     @Column(name = "create_at")
     private LocalDate createAt;
+
+    // campo comun y corriente de la clase, no se mapea a la bd
+    @Transient // port no sera una columna de la tabla products
+    private int port;
 
     public Long getId() {
         return id;
@@ -53,6 +58,14 @@ public class Product {
 
     public void setCreateAt(LocalDate createAt) {
         this.createAt = createAt;
+    }
+
+    public int getPort() {
+        return port;
+    }
+
+    public void setPort(int port) {
+        this.port = port;
     }
     
 }
